@@ -1,0 +1,140 @@
+---
+title: "RWorksheet.Sanceda#1.Rmd."
+output:
+  pdf_document: default
+  html_document: default
+date: "2024-09-17"
+---
+
+
+# 1.Set up a vector named age.
+
+    age <- c(34, 28, 22, 36, 27, 18, 52,       39, 42, 29,35, 31, 27, 22, 37, 34, 19,     20, 57, 49, 50, 37, 46, 25, 17, 37, 42,     53, 41,51, 35, 24, 33, 41)
+    
+    age
+
+ # a.How many data points.
+
+    nbrpts <- length(age)
+    nbrpts
+    
+# 2. Find the Reciprocal of the values of age.
+
+    reciprocal_age <- 1 / age
+    reciprocal_age
+    
+    
+# 3. Assign also new_age <- c(age, 0, age).
+
+    new_age <- c(age, 0, age)
+    new_age
+    
+# 4. Sort the values for age.
+
+    sort(age)
+    
+# 5. Find the minimum and maximum value for age.
+
+    min(age)
+    max(age)    
+
+# 6. Set up a vector named data.
+  
+    data <- c(2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5, 2.3, 2.5, 2.3, 2.4, 2.7)
+    
+    nmbrofdtps <- length(data)
+    nmbrofdtps
+    
+# 7. Generate a new vector for data where you double every value of the data.
+
+    newData <- 2 * data
+    newData
+
+# 8. Generate a sequence for the following scenario.
+
+  # 8.1 Integers from 1 to 100.
+  
+    Int <- seq(1:100)
+    Int
+ 
+  # 8.2 Numbers from 20 to 60.
+    
+    Num <- seq(from=20,to=60)
+    Num
+    
+  # 8.3 Mean of numbers from 20 to 60.
+  
+    Num <- seq(from=20, to=60)
+    xNum <- mean(Num)
+    xNum
+    
+  # 8.4 Sum of numbers from 51 to 91.
+  
+    sNum <- sum(51:91)
+    sNum
+  
+  # 8.5 Integers from 1 to 1000.
+  
+    sInt <- seq(1:1000)
+    sInt
+    
+  # a. How many data points from 8.1 to 8.4?
+  
+    dtpts <- length(c(Int, Num, xNum, sNum))
+    
+    dtpts
+    
+  # c. For 8.5, find only the maximum data points until 10.
+  
+    mxdtpts <- Int[1:10]
+    mxdtpts
+    length(mxdtpts)
+    
+# 9. Print a vector with the integers between 1 and 100 that are       not divisible by 3, 5 and 7 using filter option.  
+
+        Filter(function(i) { all(i %% c(3,5,7) != 0) }, seq(100))
+
+# 10. Generate a sequence backwards of the integers from 1 to 100.
+
+       
+     reve <- rev(seq(1:100))
+     reve
+     
+# 11. List all the natural numbers below 25 that are multiples of 3 or 5.
+
+      x <- Filter(function(i) {any(i %% c(3,5) ==0)}, seq(24))
+      x 
+      Sumofx <- sum(x)
+      Sumofx
+
+ # a. How many data points from 10 to 11? 
+ 
+      dtpt <- length(c(reve, x, Sumofx))
+      dtpt
+      
+# 12. 
+ 
+      x <- {0 + x + 5 + }
+      
+# 13. 
+
+      score <- c(72, 86, 92, 63, 88, 89, 91, 92, 75, 75,77.)
+      
+      s2 <- score[2]
+      s2
+      s3 <- score[3]
+      s3
+
+# 14. *Create a vector a = c(1,2,NA,4,NA,6,7).  
+
+      a <- c(1, 2 ,NA, 4, NA, 6, 7)
+      print(a,na.print="-999")
+      print(a,na.print="-999")
+
+#15 
+
+    name = readline(prompt="Input your name: ")
+    age = readline(prompt="Input your age: ")
+    print(paste("My name is",name, "and I am",age ,"years  old."))
+    (R.version.string)
+    

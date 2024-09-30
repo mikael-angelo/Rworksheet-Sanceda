@@ -1,0 +1,177 @@
+---
+title: "RWorksheet_Sanceda#2.R"
+output: html_document
+date: "2024-09-28"
+---
+
+#1.
+#a.      
+      
+        Operator <- c(seq(from = -5, to = 5))
+        Operator
+    
+#The output is -5 to 5 with a difference of 1.
+
+#b.
+        
+        
+        x <- 1:7
+        x
+
+#Value of x is 1 to 7.
+
+#2.Create a vector using seq() function.
+
+#a.
+
+      angelo <- c(seq(1, 3, by = 0.2))
+      angelo
+      
+#The output displays 1 - 3 with a 0.2 step size.
+
+#3. 
+#a.
+
+      fctrywrkersAge <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27,
+                          22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43,                             53, 41, 51, 35, 24,33, 41, 53, 40, 18, 44, 38, 41, 48, 27,                           39, 19, 30, 61, 54, 58, 26, 18.)
+      fctrywrkersAge[3]                 
+
+      
+#The value is 22.
+
+#b.
+
+      fctrywrkersAge[2]
+      fctrywrkersAge[4]
+
+#The values are 28 and 36.
+
+#c. 
+
+      fctrywrkersAge[c(-4, -12)]
+      
+#4.
+  
+      names <- c("first"=3, "second"=0, "third"=9)    
+      names[c("first", "third")]
+      
+#The output is 3 and 9 which is the assigned value of first and third.
+
+#5.
+#a.
+      
+      x <- c(seq(from = -3, to = 2))
+      x
+      x[2] <- 0
+      x
+
+#The 2nd element's value changes from -2 to 0.
+
+#6.
+#a.
+
+    FuelTbl <- data.frame(Month = c("Jan", "Feb", "March", "Apr", "May", "June"),
+                           LP = c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00),
+                           QP = c(25, 30, 40, 50, 10, 45))
+    FuelTbl
+    
+#b.
+
+    FuelTbl <- weighted.mean(FuelTbl$LP,FuelTbl$QP)
+    FuelTbl
+    
+#7.
+
+    rivers
+    hahahaha <- data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers),                           var(rivers), sd(rivers), min(rivers), max(rivers))
+    hahahaha
+    
+#b. THe results are 141.0000  83357.0000    591.1844    425.0000 243908.4086            493.8708  135.0000  3710.0000
+
+#8. 
+
+    PwrRnking <- c(1:25)
+    PwrRnking
+    
+    Celebs <- c("Tom Cruise", "Rolling Stones", "Ophrah Winfrey", "U2", 
+    "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent",
+    "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donald Trump",                        "Muhammad Ali", "Paul McCartney", "George Lucas", "Elton John",                     "David Letterman", "Phil Mickelson", "J.K Rowling", "Bradd Pitt",                   "Peter Jackson", "Dr. Phil McGraw", "Jay Lenon", "Celine Dion",                     "Kobe Bryant")
+    Celebs
+    
+    Pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34,                40, 47, 75, 25, 39, 45, 32, 40, 31)
+    
+    FrbsRnking <- data.frame(PwrRnking = PwrRnking, Celebs = Celebs, Pay = Pay)
+    FrbsRnking
+      
+#b.
+
+    FrbsRnking[FrbsRnking$Celebs == "J.K Rowling", "PwrRnking"] <- 15
+    FrbsRnking[FrbsRnking$Celebs == "J.K Rowling", "Pay"] <- 90
+  
+    FrbsRnking
+    
+#c.
+  
+    write.csv(FrbsRnking, file = "PwrRnking.csv", row.names = FALSE)
+    importedRanking <- read.csv("PwrRnking.csv")
+    importedRanking
+    
+#d. 
+
+      Ranking <- FrbsRnking[10:20, ]
+      save(Ranking, file = "Ranks.RData")
+      Ranking
+      
+#e.The output displays the Rank 10 to 20 Celebrities and Their Pay.
+
+#9.
+#a.
+
+     HotelsVienna <- read_excel("hotels-vienna.xlsx")
+     HotelsVienna
+     
+#b.
+
+      Dmnsns <- dim(HotelsVienna)
+      Dmnsns     
+
+#The output displays 428 and 24.
+
+#c.
+
+      slctedcol <- HotelsVienna[, c("country", "neighbourhood", "price",                                  "stars", "accommodation_type", "rating")]
+      print(head(slctedcol))
+      
+#d.
+
+      save(slctedcol, file = "new.RData")
+      slctedcol
+      
+#e.
+
+      load("new.RData")
+      head(slctedcol)
+      tail(slctedcol)
+      
+#10.
+#a.
+
+      veges <- list("Eggplant", "Potato", "Carrots", "Cucumber", "Cabbage", "Garlic", "Brocoli", "Onion", "Cauliflower", "Okra")
+      veges
+      
+#b. 
+
+      veges <- append(veges, c("Mushroom", "Bell Pepper"))
+      veges
+      
+#c. 
+
+      veges <- append(veges, c("Peas", "Celery", "Chili", "Spring Onion"), after = 5)
+      veges
+      length(veges)
+      
+#d. 
+
+       veges <-veges[-c(5, 10, 15)]
+       veges
+       length(veges)

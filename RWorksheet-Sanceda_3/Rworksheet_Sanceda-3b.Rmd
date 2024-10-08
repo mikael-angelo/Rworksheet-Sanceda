@@ -1,0 +1,130 @@
+---
+title: "RWorksheet_Sanceda#3b"
+output: pdf_document
+date: "2024-10-05"
+---
+```{r}
+
+#1.
+#a. 
+
+    Respondents <- c(1:20)
+    Respondents
+    Sex <- c(2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,1,2)
+    Sex
+    FatherOccupation <- c(1,3,3,3,1,2,3,1,1,1,3,2,1,3,3,1,3,1,2,1)
+    FatherOccupation
+    Personathome <- c(5,7,3,8,5,9,6,7,8,4,7,5,4,7,8,8,3,11,7,6)
+    Personathome
+    Siblingsatschool <- c(6,4,4,1,2,1,5,3,1,2,3,2,5,5,2,1,2,5,3,2)
+    Siblingsatschool
+    Typesofhouses <- c(1,2,3,1,1,3,3,1,2,3,2,3,2,2,3,3,3,3,3,2)
+    Typesofhouses
+  
+    Data <- data.frame(Respondents=Respondents, Sex=Sex, FatherOccupation=FatherOccupation, Personathome = Personathome, Siblingsatschool = Siblingsatschool, Typesofhouses = Typesofhouses)
+    Data
+    
+#b. The data is more clearer and organized.
+    
+    summary(Data)
+    str(Data)
+    
+#c. The mean number is 2.95, not 5.
+    
+    mean(Data[, 5])
+    
+#d.
+    
+    rows <- Data[1:2, ]
+    rows
+    
+#e. 
+    
+     xtract <- Data[c(3:5), c(2,4)]
+     xtract
+    
+#f.
+    
+    tHouses <- Data[,6]
+    tHouses
+    
+#g. 
+    
+    male <- subset(Data, Data[,2] == 1 & Data[,3] == 1 )
+    male
+    
+#h.
+    
+    female <- subset(Data, Data[,2] == 2 & Data[,5] >= 5)
+    female
+    
+    
+```
+
+```{r}
+#2.
+#a. 
+
+       df = data.frame(Ints=integer(), Doubles=double(), Characters=character(), Logicals=logical(),Factors=factor(),stringsAsFactors=FALSE)
+
+      print("Structure of the empty dataframe:")
+      print(str(df))
+
+```
+```{r}
+#3.
+#a. 
+
+    Respondents <- c(1,2,3,4,5,6,7,8,9,10)
+    Sex <- c("Male", "Female", "Female", "Male", "Male", "Female", "Female", "Male",   "Female", "Male")
+    Father <- c(1,2,3,3,1,2,2,3,1,3)
+    Persons <- c(5,7,3,8,6,4,4,2,11,6)
+    Siblings <- c(2,3,0,5,2,3,1,2,6,2)
+    Houses <- c("Wood", "Concrete", "Concrete", "Wood", "Semi-concrete", "Semi-concrete", "Wood", "Semi-concrete", "Semo-concrete", "Concrete")
+    
+    DataH <- data.frame(Respondents = Respondents, Sex = Sex, Fathers_Occupation = Father, Persons = Persons, Siblings = Siblings, Types_of_Houses = Houses)
+    DataH
+    
+    write.csv(DataH, file = "HouseholdData.csv", FALSE)
+#a. 
+    
+    Imprtd <- read.csv("HouseholdData.csv")
+    Imprtd
+
+#b.
+    
+    Imprtd$Sex <- factor(Imprtd$Sex, levels = c("Male","Female"), labels = c(1,2))
+    Imprtd
+
+#c.
+    
+     Imprtd$Types_of_Houses <- factor(Imprtd$Types_of_Houses, levels = c("Wood", "Congrete", "Semi-congrete"), labels = c(1, 2, 3))
+     Imprtd
+     
+#d.
+     
+     Imprtd$Father <- factor(Imprtd$Father, levels = c("Farmer", "Driver", "Others"),  labels = c(1, 2, 3))
+     Imprtd
+     
+#e.
+     
+     FtDrivers <- subset(Imprtd, Sex == 2 & Father == 2)
+     FtDrivers
+     
+#f.
+     
+     Sblngs <- subset(Imprtd, Siblings >= 5)
+     Sblngs
+     
+#4.
+     
+     #The graph shows the sentiment of tweets day by day. Negative tweets being 
+     #the highest followed by Positive and lastly, Neutral. This could change, 
+     #depending on the issues and trends in society and also on the internet.
+ 
+    
+
+```
+
+
+

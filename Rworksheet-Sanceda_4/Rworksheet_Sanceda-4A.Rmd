@@ -1,0 +1,80 @@
+---
+title: "RWorksheet_Sanceda#4A"
+output: html_document
+date: "2024-10-14"
+---
+
+```{r}
+#1.
+#a. The data displays the Shoe Size, Height, and Gender.
+
+    ShoeSize <- c(6.5,9.0,8.5,8.5,10.5,7.0,9.5,9.0,13.0,7.5,10.5,8.5,12.0,10.5,13.0,11.5,8.5,5.0,10.0,6.5,7.5,8.5,10.5,8.5,10.5,11.0,9.0,13.0)
+
+    Height <-c(66.0,68.0,64.5,65.0,70.0,64.0,70.0,71.0,72.0,64.0,74.5,67.0,71.0,71.0,77.0,72.0,59.0,62.0,72.0,66.0,64.0,67.0,73.0,69.0,72.0,70.0,69.0,70.0)
+    
+    Gender <- c("F","F","F","F","M","F","F","F","M","F","M","F","M","M","M","M","F","F","M","F","F","M","M","F","M","M","M","M")
+    
+    Shoes_Tble <- data.frame(ShoeSize, Height, Gender)
+    Shoes_Tble
+    
+#b.
+    
+    Male <- subset(Shoes_Tble, Gender == "M", select = c(ShoeSize, Gender, Height))
+    Male
+    
+    Female <- subset(Shoes_Tble, Gender == "F", select = c(ShoeSize, Gender, Height))
+    Female
+    
+    
+#c.
+    
+    Mean_Size <- mean(ShoeSize)
+    Mean_Size
+    
+    Mean_Height <- mean(Height)
+    Mean_Height
+    
+#d. Yes, because the bigger or taller you are the more likely your shoe size is also bigger.
+    
+```
+```{r}
+#2. 
+
+    Months <- c("March", "April", "January", "November", "January", "September", "October", "September", "November", "August", "January", "November", "November", "February", "May", "August", "July", "December", "August", "August", "September", "November", "February", "April")
+
+    Factor_Mnths <- factor(Months)
+    Factor_Mnths
+    
+    assign("Factor_Months_Vector",Factor_Mnths)
+    Factor_Months_Vector
+    
+```
+```{r}
+#3.
+
+    summary(Months)
+
+    summary(Factor_Months_Vector)
+    
+```
+```{r}
+#4. 
+
+    Direction <- c("East", "West", "North")
+    Frequency <- c(1,4,3)
+    DirFreq <- data.frame(Direction, Frequency)
+    DirFreq
+    
+    new_order_data <- factor(Direction ,levels = c("East","West","North"))
+print(new_order_data)
+
+```
+
+```{r}
+#5.
+
+    Excel <- read.table("import_march.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+    Excel
+    
+```
+

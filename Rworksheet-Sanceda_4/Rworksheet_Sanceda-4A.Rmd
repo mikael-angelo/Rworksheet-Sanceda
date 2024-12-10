@@ -1,7 +1,9 @@
 ---
-title: "RWorksheet_Sanceda#4A"
-output: html_document
-date: "2024-10-14"
+title: "RWorksheet_Sanceda#4a"
+output:
+  pdf_document: default
+  word_document: default
+date: "2024-11-17"
 ---
 
 ```{r}
@@ -37,6 +39,7 @@ date: "2024-10-14"
 #d. Yes, because the bigger or taller you are the more likely your shoe size is also bigger.
     
 ```
+
 ```{r}
 #2. 
 
@@ -76,5 +79,98 @@ print(new_order_data)
     Excel <- read.table("import_march.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
     Excel
     
+```
+
+```{r}
+#6.
+
+    N <- readline(prompt = "Enter a number 1 to 50:")
+    if(N == 20){
+      print("TRUE")
+    }else if(N <= 50 && N >= 0){
+      N
+    }else{
+      print("The number is way beyond the range of 1 and 50.")
+    }
+```
+```{r}
+      
+#7.
+   min_bills <- function(price) {
+  bills <- c(1000, 500, 200, 100, 50)
+  
+
+  count <- 0
+  
+  for (bill in bills) {
+    if (price <= 0) {
+      break
+    }
+    count <- count + floor(price / bill)
+    
+    price <- price %% bill
+  }
+  
+  return(count)
+}
+
+
+snack_price <- as.integer(readline(prompt = "Enter the price of the snack (divisible by 50): "))
+if (is.na(snack_price) %% 50 == 0) {
+  cat("Minimum number of bills needed:", min_bills(snack_price), "\n")
+} else {
+  cat("The price must be divisible by 50.\n")
+}
+```
+
+
+
+```{r}
+#8
+#a
+Grades <- data.frame (Name = c("Annie", "Thea", "Steve", "Hanna"),
+                       Grade_1 = c(85, 65, 75, 95),
+                       Grade_2 = c(65, 75, 55, 75),
+                       Grade_3 = c(85, 90, 80, 100),
+                       Grade_4 = c(100, 90, 85, 90)
+                       )
+Grades
+```
+
+
+```{r}
+#b
+for (i in 1:nrow(Grades)) {
+  ascore <- sum(Grades[i, 2:5]) / 4
+  if (ascore > 90) {
+    cat(Grades$Name[i], "'s average grade this semester is", ascore, "\n")
+  }
+}
+```
+
+
+```{r}
+#c
+for (j in 2:ncol(Grades)) {
+  T_avg <- sum(Grades[, j]) / nrow(Grades)
+  if ( T_avg  < 80) {
+    cat("The", colnames(Grades)[j], "test was difficult.\n")
+  }
+}
+```
+
+```{r}
+#d
+for (i in 1:nrow(Grades)) {
+  H_grade <- Grades[i, 2]
+  for (j in 3:5) {
+    if (Grades[i, j] > H_grade) {
+      H_grade <- Grades[i, j]
+    }
+  }
+  if (H_grade > 90) {
+    cat(Grades$Name[i], "'s highest grade this semester is", H_grade, "\n")
+  }
+}
 ```
 

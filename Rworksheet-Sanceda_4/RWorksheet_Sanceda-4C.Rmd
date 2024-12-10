@@ -1,0 +1,225 @@
+---
+title: "Untitled"
+output: pdf_document
+date: "2024-12-10"
+---
+
+```{r}
+#1
+#a
+library(readxl)
+data <- read.csv ("mpg.csv")
+data
+```
+```{r}
+#b
+# Inside the mpg dataset are manufacturer, model, trans, drv, fl, and class.
+```
+
+```{r}
+#c
+#The continuous variables inside the mpg dataset are displ, cty, and hwy.
+```
+
+```{r}
+#2
+#The manufacturer with the most models in this dataset is Toyota, with 6 unique models. The model with the most variations is the Caravan 2WD, with 11 different configurations.
+
+#a
+library(ggplot2)
+library(dplyr)
+
+mnfctrModelCount <- data %>%
+  group_by(manufacturer) %>%
+  summarise(unique_models = n_distinct(model)) %>%
+  arrange(desc(unique_models))
+
+mnfctrModelCount 
+```
+
+```{r}
+#b
+ggplot(mnfctrModelCount , aes(x = reorder(manufacturer, -unique_models), y = unique_models)) +
+  geom_bar(stat = "Identity", fill = "maroon") +
+  labs(title = "Unique Models by Manufacturer", x = "Manufacturer", y = "Count") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+```{r}
+#2
+#a
+
+ggplot(mpg, aes(model, manufacturer)) + geom_point()
+
+#Creates scatter plot where every single point represents a specific model-manufacturer combination.
+  
+```
+
+```{r}
+#b
+
+# It is useful , however the output is a little bit messy making it hard to understand.
+
+```
+
+```{r}
+#3
+library(ggplot2)
+library(dplyr)
+
+Top20 <-data %>% head(20)
+
+ggplot(Top20, aes(x = model, y = year)) +
+  geom_point() +
+  labs(title = "Top 20 Car Models by Year") +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
+```{r}
+#4
+model_count <- data %>%
+  group_by(model) %>%
+  summarise(car_count = n())
+
+model_count
+```
+
+```{r}
+#a
+Top_20_Models <- model_count %>% top_n(20, car_count)
+
+ggplot(Top_20_Models , aes(x = reorder(model, car_count), y = car_count, fill = model)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 20 Car Models by Count (Flipped)",
+       x = "Car Model",
+       y = "Count") 
+```
+
+```{r}
+#b
+ggplot(Top_20_Models , aes(x = reorder(model, car_count), y = car_count, fill = model)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 20 Car Models by Count",
+       x = "Car Model",
+       y = "Count") + coord_flip() 
+```
+
+```{r}
+#5
+#a
+# Cylinder counts aligns with Engine displacement
+
+ggplot(data, aes(x = cyl, y = displ, color = displ)) +
+  geom_point() +
+  labs(title = "Relationship between No. of Cylinders and Engine Displacement",
+       x = "Number of Cylinders",
+       y = "Engine Displacement (L)") 
+```
+
+```{r}
+#6
+ggplot(data, aes(x = displ, y = hwy, color = cyl)) +
+  geom_point() +
+  labs(title = "Relationship between Engine Displacement and Highway MPG",
+       x = "Engine Displacement (L)",
+       y = "Highway MPG")
+```
+```{r}
+#6. Import the traffic.csv onto your R environment.
+DATA_traffic <- read.csv("~/traffic.csv")
+DATA_traffic
+```
+
+```{r}
+#a. How many numbers of observation does it have? What are the variables of the traffic dataset.
+
+str(DATA_traffic)
+
+#The data have 4 variables inside which are DateTime, Junction, Vehicles and ID.
+```
+
+
+```{r}
+#b. subset the traffic dataset into junctions. What is the R codes and its output?
+
+subsetDataTraffic <- subset(DATA_traffic, Junction == 1)
+subsetDataTraffic
+
+```
+```{r}
+#c.Plot each junction in a using geom_line(). Show your solution and output.
+
+library(ggplot2)
+
+ggplot(subsetDataTraffic, aes(x = DateTime, y = Vehicles, color = Junction)) +
+  geom_line() +
+  labs(title = "Traffic Counts by Junction", x = "Date & Time", y = "Vehicles")
+
+```
+```{r}
+#7
+library(readxl)
+alexa <- read_excel("alexa_file.xlsx")
+alexa
+```
+
+```{r}
+#a
+numRows <- nrow(alexa)
+numCols <- ncol(alexa)
+cat("Number of observations:",numRows, "\n")
+cat("Number of columns:", numRows, "\n")
+```
+
+```{r}
+#b
+library(dplyr)
+
+variations <- alexa %>%
+  group_by(variation) %>%
+  summarise(total_count = n())
+
+variations
+```
+
+```{r}
+#c
+
+PLOT_Variation <- ggplot(variations, aes(x = variation, y = total_count)) +
+  geom_bar(stat = "identity") +
+  xlab("Variations") +
+  ylab("Total Count") +
+  ggtitle("Total Count of Each Variation")
+
+PLOT_Variation
+```
+
+```{r}
+#d
+
+VerifiedViews <- alexa %>%
+  group_by(date) %>%
+  summarise(count = n()) %>%
+  arrange(date)
+
+Plot_Verified <- ggplot(VerifiedViews, aes(x = date, y = count)) +
+  geom_line(color = "black") +
+ labs(title = "Verified Reviews Over Time", x = "Date", y = "Verified Reviews") +
+  theme_minimal()
+
+
+Plot_Verified
+```
+
+```{r}
+#e
+colnames(alexa)
+Variation_R <- alexa %>%
+  group_by(variation) %>%
+  summarise(avg_rating = mean(rating, na.rm = TRUE)) %>%
+  arrange(desc(avg_rating))
+Variation_R
+
+ggplot(Variation_R, aes(x = reorder(variation, avg_rating), y = avg_rating, fill = variation)) +
+  geom_bar(stat = "identity") + labs(title = "Average Ratings by Variation", x = "Variation", y = "Average Rating") + coord_flip()
+```
